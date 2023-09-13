@@ -1,0 +1,17 @@
+.btns_const_videoPage{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-grow: 5;
+}
+.btn_VideoPage{
+    margin: auto 0;
+    display: flex;
+}
+.like_videopage{
+    cursor: pointer;
+    display: flex;
+    margin: 0.5rem;
+}
+.btns_videopage{
+    margin: auto 0.5rem;
+}
