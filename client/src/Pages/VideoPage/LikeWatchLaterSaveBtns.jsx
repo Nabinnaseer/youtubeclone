@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { likeVideo } from '../../actions/video';
 import { addToLikedVideo, deleteLikedVideo} from '../../actions/likedVideo';
 import {addTowatchLater, deleteWatchLater} from '../../actions/watchLater';
+import { addToSub, deleteSub } from '../../actions/subscribe';
+
 
 function LikeWatchLaterSaveBtns({vv,vid}) {
     const CurrentUser = useSelector((state) => state.currentUserReducer || [])
@@ -16,16 +18,40 @@ function LikeWatchLaterSaveBtns({vv,vid}) {
     const [DisLikeBtn, setDisLikeBtn] = useState(false);
     const [LikeBtn, setLikeBtn] = useState(false);
 
-    const likedVideoList = useSelector((state) => state.likedVideoReducer);
-    const watchLaterList = useSelector((state) => state.watchLaterReducer);
+    const likedVideoList = useSelector((state) => state.likedVideoReducer || []);
+    const watchLaterList = useSelector((state) => state.watchLaterReducer || []);
+    const [subscribe, setSubscribe] = useState(false)
+    const subscriberList = useSelector((state) => state.subReducer || []);
     useEffect(() => {
-        likedVideoList.data.filter(
-            (q) => q.videoId === vid && CurrentUser.result && q.Viewer === CurrentUser.result._id)
-            .map(m => setLikeBtn(true));
-            watchLaterList.data.filter(
-            (q) => q.videoId === vid && CurrentUser.result && q.Viewer === CurrentUser.result._id)
-            .map(m => setSaveVideo(true));
-    },[])
+        if (CurrentUser.result) {
+          likedVideoList.data
+            .filter(
+              (q) =>
+                q.videoId === vid &&
+                q.Viewer === CurrentUser.result._id
+            )
+            .map((m) => setLikeBtn(true));
+          
+          watchLaterList.data
+            .filter(
+              (q) =>
+                q.videoId === vid &&
+                q.Viewer === CurrentUser.result._id
+            )
+            .map((m) => setSaveVideo(true));
+          
+          if (subscriberList && subscriberList.data) {
+            subscriberList.data
+              .filter(
+                (sub) =>
+                  sub.channel === vv.videoChannel &&
+                  sub.subscriber === CurrentUser.result._id
+              )
+              .map((m) => setSubscribe(true));
+          }
+        }
+      }, []);
+      
 
     const toggleSavedVideo = () =>{
         if(CurrentUser.result)
@@ -48,6 +74,40 @@ function LikeWatchLaterSaveBtns({vv,vid}) {
         }
     }
 
+    const toggleSubscribe = () => {
+        if (CurrentUser.result) {
+          // Check if the current user is not the owner of the channel
+          if (CurrentUser.result._id !== vv.videoChannel) {
+            // Implement your subscription logic here
+            if (subscribe) {
+                setSubscribe(false);
+                dispatch(
+                    deleteSub({
+                        channel:vv.videoChannel,
+                        subscriber: CurrentUser.result._id
+                    })
+                  )
+                //   alert("Unsubscribed from Channel")
+                  
+            } else {
+              setSubscribe(true);
+              dispatch(
+                addToSub({
+                    channel:vv.videoChannel,
+                    subscriber: CurrentUser.result._id
+                })
+              )
+            //   alert("Subscribed to the channel");
+            }
+          } else {
+            // The current user owns the channel, so no need to show the subscribe button
+            alert("You cannot subscribe to your own channel");
+          }
+        } else {
+          alert("Please Login to Subscribe")
+        }
+      }
+      
     const toggleLikeBtn = (e,lk) =>{
         if(CurrentUser.result) {
             if(LikeBtn){
@@ -149,6 +209,23 @@ function LikeWatchLaterSaveBtns({vv,vid}) {
                         </>)
                     }
                 </div>
+               
+
+                <div className="like_videopage" onClick={() => toggleSubscribe()}>
+                {subscribe ? (
+                    <>
+                    <MdPlaylistAddCheck size={22} className='btns_videopage' />
+                    <b>Subscribed</b>
+                    </>
+                ) : (
+                    <>
+                        <RiPlayListAddFill size={22} className='btns_videopage' />
+                        <b>Subscribe</b>
+                        </>
+                )}
+                </div>
+
+             
                 <div className="like_videopage">
                     {
                         <>

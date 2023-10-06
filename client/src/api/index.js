@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API = axios.create({baseURL : `http://localhost:5500/`});
-const API = axios.create({baseURL : `https://youtubeclone-yak1.onrender.com/`});
+const API = axios.create({baseURL : `http://localhost:5500/`});
+// const API = axios.create({baseURL : `https://youtubeclone-yak1.onrender.com/`});
 
 API.interceptors.request.use((req) => {
     if(localStorage.getItem("Profile")){
@@ -37,3 +37,11 @@ export const postComment = (CommentData) => API.post('/comment/post',CommentData
 export const deleteComment = (id) => API.delete(`/comment/delete/${id}`);
 export const editComment = (id,commentBody) => API.patch(`/comment/edit/${id}`,{commentBody});
 export const getAllComment = (CommentData) => API.get('/comment/get');
+
+export const addToSub = (SubData) => API.post('/subscription/subscribe',SubData);
+export const getAllSub = () => API.get('/subscription/getAllSub');
+export const deleteSub = (channel,subscriber) => API.delete(`/subscription/deleteSub/${channel}/${subscriber}`);
+
+export const addToAccess = (AccessData) => API.post('/subscription/access',AccessData);
+export const getAllAccess = () => API.get('/subscription/getAllAccess');
+export const deleteAccess = (channel) => API.delete(`/subscription/deleteAccess/${channel}`);

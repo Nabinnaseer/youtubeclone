@@ -32,6 +32,10 @@ function LeftSidebar() {
           <MdOutlineVideoLibrary size={22} className='icon_sidebar'/>
           <div className="text_sidebar_icon">Library</div>
        </NavLink>
+       <NavLink to={'/hwl'} className='icon_sidebar_div'>
+          <MdOutlineVideoLibrary size={22} className='icon_sidebar'/>
+          <div className="text_sidebar_icon">HWL</div>
+       </NavLink>
     </div>
   )
 }

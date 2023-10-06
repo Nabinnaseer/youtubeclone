@@ -6,6 +6,7 @@ import upload from '../Helpers/fileHelpers.js';
 import { likeVideoController , getAlllikeVideoController,deleteLikeVideoController} from '../controllers/likeVideo.js';
 import { watchLaterController , getAllwatchLaterController,deletewatchLaterController } from '../controllers/watchLater.js';
 import { HistoryController , getAllHistoryController,deleteHistoryController } from '../controllers/History.js';
+import { subscriptionController,getAllSubController,deleteSubController } from '../controllers/subscribe.js';
 import auth from '../middleware/auth.js'
 
 const routes = express.Router();
@@ -25,4 +26,9 @@ routes.delete('/deleteWatchLater/:videoId/:Viewer',auth,deletewatchLaterControll
 routes.post('/History',auth,HistoryController)
 routes.get('/getAllHistory',getAllHistoryController)
 routes.delete('/clearHistory/:userId',auth,deleteHistoryController)
+
+routes.post('/subscribe',auth,subscriptionController)
+routes.get('/getAllSub',getAllSubController)
+routes.delete('/deleteSub/:channel/:subscriber',auth,deleteSubController)
+
 export default routes;

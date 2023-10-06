@@ -14,6 +14,9 @@ import { getAlllikedVideo } from './actions/likedVideo';
 import { getAllwatchLater } from './actions/watchLater';
 import { getAllHistory } from './actions/History';
 import { getAllComment } from './actions/comments';
+// import UserControl from './Pages/Channel/UserControl';
+import { getAllSub } from './actions/subscribe';
+import {getAllAccess} from './actions/access';
 
 
 function App() {
@@ -26,6 +29,8 @@ function App() {
     dispatch(getAllwatchLater());
     dispatch(getAllHistory());
     dispatch(getAllComment());
+    dispatch(getAllSub());
+    dispatch(getAllAccess());
   }, [dispatch]);
   
 
@@ -45,6 +50,7 @@ function App() {
   };
   const [vidUploadPage, setVidUploadPage] = useState(false)
   const [EditCreateChannelBtn, setEditCreateChannelBtn] = useState(false)
+  // const [userControl, setUserControl] = useState(false)
   return (
     <>
       <Router>
@@ -54,6 +60,9 @@ function App() {
       {
         EditCreateChannelBtn && <CreateEditChannel setEditCreateChannelBtn={setEditCreateChannelBtn}/> 
       }
+      {/* {
+        userControl && <UserControl setUserControl={setUserControl}/>
+      } */}
         
         <Navbar
           toggleDrawer={toggleDrawer}
@@ -67,7 +76,9 @@ function App() {
         }
         <Allroutes 
         setEditCreateChannelBtn = {setEditCreateChannelBtn}
-        setVidUploadPage = {setVidUploadPage}/>
+        setVidUploadPage = {setVidUploadPage}
+        // setUserControl = {setUserControl}
+        />
       </Router>
     </>
   );

@@ -26,7 +26,7 @@
 .description_channel p{
     font-size: large;
 }
-.editbtn_channel,.uploadbtn_channel{
+.editbtn_channel,.uploadbtn_channel,.control_channel{
     position: absolute;
     right: 1rem;
     top: 0.5rem;
@@ -41,7 +41,10 @@
 .uploadbtn_channel{
     top: 4rem;
 }
-.editbtn_channel:hover,.uploadbtn_channel:hover{
+.control_channel{
+    top: 7.5rem;
+}
+.editbtn_channel:hover,.uploadbtn_channel:hover,.control_channel:hover{
     border: 2px solid;
     color: orange;
 }

@@ -4,6 +4,7 @@ import dontenv from "dotenv";
 import userRoutes from './routes/user.js';
 import videoRoutes from './routes/video.js'
 import commentsRoutes from './routes/comments.js';
+import subscriptionRoutes from './routes/subscription.js';
 import cors from 'cors';
 import bodyParser from "body-parser";
 
@@ -25,6 +26,7 @@ app.use(bodyParser.json())
 app.use('/user',userRoutes)
 app.use('/video',videoRoutes) //'/video' is the same from api in client
 app.use('/comment',commentsRoutes)
+app.use('/subscription',subscriptionRoutes)
 
 const PORT = process.env.PORT
 app.listen(PORT,() => {

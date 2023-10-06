@@ -51,7 +51,7 @@ function Comments({videoId}) {
         </form>
         <div className="display_comment_container">
             {
-                commentsList.filter((q)=> videoId === q.videoId).reverse().map((m) => {
+                commentsList.filter((q)=> videoId === q.videoId).reverse().map((m,index) => {
                     return(
                         <DisplayComments
                         cId = {m._id}
@@ -59,6 +59,7 @@ function Comments({videoId}) {
                         commentBody = {m.commentBody}
                         commentOn = {m.commentOn}
                         userCommented = {m.userCommented}
+                        commentPos = {index + 1}
                         />
                     )
                 })

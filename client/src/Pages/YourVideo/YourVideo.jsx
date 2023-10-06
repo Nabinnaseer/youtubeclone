@@ -6,9 +6,9 @@ import './YourVideo.css';
 import { useSelector } from 'react-redux';
 
 function YourVideo() {
-  const vids = useSelector((state) => state.videoReducer).data;
-  // .filter((q)=> q.videoChannel === CurrentUser.result._id).reverse();
-  const CurrentUser = useSelector((state) => state.currentUserReducer);
+  const CurrentUser = useSelector((state) => state.currentUserReducer || []);
+  const vid = useSelector((state) => state.videoReducer || [])
+  const vids = vid.data.filter((q)=> CurrentUser.result && q.videoChannel === CurrentUser.result._id).reverse();
   // const vids = [
   //   {
   //     _id: 1,
@@ -50,7 +50,7 @@ function YourVideo() {
         <div className="container_yourvideos">
             <h1>Your Videos</h1>
             {
-              CurrentUser?(<>
+              CurrentUser.result && CurrentUser?(<>
               <ShowVideoGrid vids={vids}/>
               </>):(<>
               <h3>Please Login to View Your Videos</h3>

@@ -9,6 +9,7 @@ import Library from '../Pages/Library/Library';
 import VideoPage from '../Pages/VideoPage/VideoPage';
 import Channel from '../Pages/Channel/Channel';
 import Search from '../Pages/Search/Search';
+import HWL from '../Pages/HWL/HWL';
 
 function Allroutes({setEditCreateChannelBtn,setVidUploadPage}) {
   return (
@@ -24,8 +25,11 @@ function Allroutes({setEditCreateChannelBtn,setVidUploadPage}) {
         <Route path="/channel/:Cid" element={
         <Channel 
           setEditCreateChannelBtn = {setEditCreateChannelBtn}
-          setVidUploadPage = {setVidUploadPage} />
+          setVidUploadPage = {setVidUploadPage}
+          // setUserControl = {setUserControl} 
+          />
         } />
+        <Route path='/hwl' element={<HWL/>} />
     </Routes>
   );
 }

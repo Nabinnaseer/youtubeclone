@@ -75,6 +75,18 @@ function DrawerSidebar({toggleDrawer,toggleDrawerSidebar}) {
                             </div>
                         </p>
                     </NavLink>
+                    <NavLink to={'/hwl'} className="icon_sidebar_div">
+                        <p>
+                            <MdOutlineVideoLibrary
+                            size={22}
+                            className={"icon_sidebar"}
+                            style={{margin:'auto 0.7rem'}}
+                            />
+                            <div className="text_sidebar_icon">
+                                HWL
+                            </div>
+                        </p>
+                    </NavLink>
                     <NavLink to={'/history'} className="icon_sidebar_div">
                         <p>
                             <FaHistory

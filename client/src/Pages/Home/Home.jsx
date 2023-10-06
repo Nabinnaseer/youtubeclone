@@ -8,7 +8,7 @@ import ShowVideoGrid from '../../Components/ShowVideoGrid/ShowVideoGrid';
 function Home() {
 
     const vids = useSelector((state) => state.videoReducer.data || []);
-    
+    const CurrentUser = useSelector((state) => state.currentUserReducer || []);
     console.log(vids);
 
   // const vids = [
@@ -77,7 +77,13 @@ function Home() {
             })
           }
         </div>
-          <ShowVideoGrid vids={vids}/>
+          {
+            CurrentUser.result && CurrentUser ? (<>
+              <ShowVideoGrid vids={vids}/>
+            </>):(<>
+            <center><h1 style={{color:"white"}}>Login to view</h1></center>
+            </>)
+          }
       </div>
    </div>
   )

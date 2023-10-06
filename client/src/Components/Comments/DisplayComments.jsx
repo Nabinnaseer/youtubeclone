@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteComment, editComment } from '../../actions/comments';
 import moment from 'moment';
 
-function DisplayComments({cId,commentBody,userCommented,userId,commentOn}) {
+function DisplayComments({cId,commentBody,userCommented,userId,commentOn,commentPos}) {
     const CurrentUser = useSelector((state) => state.currentUserReducer || []);
     // console.log(userId)
     const [CmtBdy, setCmtBdy] = useState("");
@@ -55,6 +55,7 @@ function DisplayComments({cId,commentBody,userCommented,userId,commentOn}) {
         }
         
         <p className="usercommented">{" "} - {userCommented} Commented {moment(commentOn).fromNow()}</p>
+        <p className="usercommented">Comment Position = {commentPos}</p>
 
         {/* {
             CurrentUser.result._id === userId && (
