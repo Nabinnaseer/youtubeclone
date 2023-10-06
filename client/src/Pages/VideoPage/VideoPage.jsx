@@ -80,7 +80,7 @@ function VideoPage() {
                 <div className="video_display_screen_videopage">
                         <video 
                         // src={`http://localhost:5500/${vv.filePath}`}
-                        src={`https://youtubeclone-yak1.onrender.com/${vv.filePath}`}
+                        src={`https://youtube-clone-zifn.onrender.com/${vv.filePath}`}
                         className={'video_showvideo_videopage'}
                         controls
                         autoPlay>
@@ -128,8 +128,9 @@ function VideoPage() {
                 <div className="container2_videopage">
                 <div className="video_display_screen_videopage">
                         <video 
-                        src={`http://localhost:5500/${vv.filePath}`}
+                        // src={`http://localhost:5500/${vv.filePath}`}
                         // src={`https://youtubeclone-yak1.onrender.com/${vv.filePath}`}
+                        src={`https://youtube-clone-zifn.onrender.com/${vv.filePath}`}
                         className={'video_showvideo_videopage'}
                         controls
                         autoPlay>
