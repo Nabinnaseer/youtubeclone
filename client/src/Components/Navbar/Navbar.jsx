@@ -52,15 +52,13 @@ function Navbar({toggleDrawer,setEditCreateChannelBtn}) {
 
     if (failureCount === 5) {
       alert('Account is blocked. Try again later.');
-      // Disable login button or show countdown timer
-      // You may want to send a request to the server to block the account.
       setCountDown(30);
-      setIsLoginDisabled(true); // Disable the login button
+      setIsLoginDisabled(true); 
       const countdownInterval = setInterval(() => {
         setCountDown((prevCountdown) => prevCountdown - 1);
       }, 1000);
 
-      // When the countdown is over, reset the login attempts and enable the button
+     
       setTimeout(() => {
         clearInterval(countdownInterval);
         setFailureCount(0);
@@ -68,7 +66,7 @@ function Navbar({toggleDrawer,setEditCreateChannelBtn}) {
         setCountDown(0);
       }, 3600000);
     }
-  }, [failureCount]); // Use the updated failureCount value in useEffect
+  }, [failureCount]); 
 
   const handleLogin = () => {
     const isLoginSuccessful = false;
